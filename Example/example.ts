@@ -93,6 +93,10 @@ async function example() {
         } else if (messageType === MessageType.contact) {
             const contact = m.message.contactMessage
             console.log(sender + ' sent contact (' + contact.displayName + '): ' + contact.vcard)
+        } else if (messageType === MessageType.contactsArray) {
+            const contacts = m.message.contactsArrayMessage
+            console.log(sender + ` sent ${contacts.displayName}:`)
+            contacts.contacts.forEach(contact => console.log(`${contact.displayName}: ${contact.vcard}`))
         } else if (messageType === MessageType.location || messageType === MessageType.liveLocation) {
             const locMessage = m.message[messageType] as WALocationMessage
             console.log(`${sender} sent location (lat: ${locMessage.degreesLatitude}, long: ${locMessage.degreesLongitude})`)
